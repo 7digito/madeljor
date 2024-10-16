@@ -1,0 +1,27 @@
+{% extends 'base.html' %}  <!-- Estende o template base.html -->
+
+{% block title %}Lista de Clientes{% endblock %}  <!-- Define o título da página -->
+
+{% block content %}  <!-- Bloco de conteúdo que será inserido na div do base.html -->
+    <h2>Lista de Clientes</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>NIF</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.nif }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">Nenhum cliente encontrado.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
