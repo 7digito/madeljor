@@ -4,23 +4,30 @@
 
 {% block content %}  <!-- Bloco de conteúdo que será inserido na div do base.html -->
     <h2>Lista de Clientes</h2>
-    <table class="table">
+    <a href="{% url 'adicionar_cliente' %}" class="btn btn-primary mb-3">Adicionar Novo Cliente</a>  <!-- Botão para adicionar novo cliente -->
+
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>NIF</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Ações</th> <!-- Coluna para ações (Editar e Apagar) -->
             </tr>
         </thead>
         <tbody>
             {% for cliente in clientes %}
-                <tr>
-                    <td>{{ cliente.nome }}</td>
-                    <td>{{ cliente.nif }}</td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td colspan="2">Nenhum cliente encontrado.</td>
-                </tr>
+            <tr>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.nif }}</td>
+                <td>{{ cliente.telefone }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>
+                    <a href="{% url 'editar_cliente' cliente.id %}" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="{% url 'apagar_cliente' cliente.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja apagar este cliente?');">Apagar</a>
+                </td> <!-- Botões para editar e apagar -->
+            </tr>
             {% endfor %}
         </tbody>
     </table>
