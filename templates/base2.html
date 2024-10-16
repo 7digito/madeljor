@@ -4,11 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Título Padrão{% endblock %}</title>
-    {% load static %}
+    <title>Título do Seu Projeto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybTkFfgG1F+I+dxA2Z2tt/5UmgFtxcG3OON5Jz62FQ5ZFGtF0" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-xqBqLllCm77/8LOtm1wlIEl0nWm9C9lOMe3tKuj4qB5AzY78b4MfZJNk1ZmL8zI4" crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Garante que o corpo ocupa toda a altura da tela */
+        }
+
+        main {
+            flex: 1; /* Faz o main ocupar o espaço disponível */
+        }
+
+        footer {
+            background-color: #007e34; /* Cor de fundo do rodapé */
+            padding: 10px 0; /* Espaçamento interno do rodapé */
+        }
+    </style>
 </head>
 
 <body>
@@ -43,12 +58,12 @@
         </div>
     </nav>
 
-    <div class="container my-4">
+    <main class="container mt-5">
         {% block content %}
         {% endblock %}
-    </div>
+    </main>
 
-    <footer class="text-center mt-5">
+    <footer class="text-center">
         <p>&copy; 2024 Sua Empresa. Todos os direitos reservados.</p>
     </footer>
 </body>
