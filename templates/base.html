@@ -58,7 +58,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'lista_clientes' %}">Clientes</a></li>
-                            <li><a class="dropdown-item" href="#">Fornecedores</a></li>
+                            <li><a class="dropdown-item" href="{% url 'lista_fornecedores' %}">Fornecedores</a></li> <!-- Link adicionado para Fornecedores -->
                             <li><a class="dropdown-item" href="#">Funcionários</a></li>
                         </ul>
                     </li>
@@ -81,6 +81,7 @@
             </div>
         </div>
     </nav>
+    
 
     <div class="container my-4">
         {% block content %}

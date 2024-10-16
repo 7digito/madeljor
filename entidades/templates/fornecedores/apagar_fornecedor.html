@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Apagar Fornecedor{% endblock %}
+
+{% block content %}
+    <h2>Apagar Fornecedor</h2>
+    <p>Tem certeza que deseja apagar o fornecedor "{{ fornecedor.nome }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Apagar</button>
+        <a href="{% url 'lista_fornecedores' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

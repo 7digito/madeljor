@@ -6,6 +6,18 @@
     <h2>Lista de Clientes</h2>
     <a href="{% url 'adicionar_cliente' %}" class="btn btn-primary mb-3">Adicionar Novo Cliente</a>  <!-- Botão para adicionar novo cliente -->
 
+    <style>
+        .btn-danger {
+            background-color: #F0371a; /* Cor do botão "Apagar" */
+            border-color: #F0371a; /* Cor da borda do botão "Apagar" */
+        }
+
+        .btn-danger:hover {
+            background-color: #c0291a; /* Tom mais escuro ao passar o mouse */
+            border-color: #c0291a; /* Tom mais escuro da borda ao passar o mouse */
+        }
+    </style>
+
     <table class="table table-striped">
         <thead>
             <tr>
