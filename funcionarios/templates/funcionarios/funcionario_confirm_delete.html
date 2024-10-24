@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Excluir Funcionário{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Excluir Funcionário</h1>
+    <p>Tem certeza que deseja excluir {{ funcionario.nome }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+    <a href="{% url 'funcionario_list' %}" class="btn btn-secondary">Cancelar</a>
+</div>
+{% endblock %}

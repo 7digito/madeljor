@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="nav-item mx-2">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'admin:index' %}"> <!-- Link para a página de admin -->
                     Admin
                 </a>
             </li>
@@ -47,6 +47,9 @@
                     </a>
                     <a class="dropdown-item" href="{% url 'fornecedor_list' %}">
                         <i class="fas fa-user-tag"></i> Fornecedores
+                    </a>
+                    <a class="dropdown-item" href="{% url 'funcionario_list' %}"> <!-- Novo link para Funcionários -->
+                        <i class="fas fa-user-cog"></i> Funcionários
                     </a>
                 </div>
             </li>

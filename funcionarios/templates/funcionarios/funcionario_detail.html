@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Detalhes do Funcionário{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 50%; margin: 0 auto; background-color: #f9f9f9; border-radius: 15px; padding: 20px;"> <!-- Centralizado, 50%, fundo claro, bordas arredondadas -->
+    <h1 class="text-center font-weight-bold">Detalhes do Funcionário</h1> <!-- Título em bold -->
+    
+    <div class="row mt-4">
+        <!-- Nome 2/3 e Categoria 1/3 -->
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="font-weight-bold">Nome</label> <!-- Título em bold -->
+                <p>{{ funcionario.nome }}</p> <!-- Exibir o nome -->
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="font-weight-bold">Categoria</label> <!-- Título em bold -->
+                <p>{{ funcionario.get_categoria_display }}</p> <!-- Exibir a categoria -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Morada -->
+    <div class="form-group">
+        <label class="font-weight-bold">Morada</label> <!-- Título em bold -->
+        <p>{{ funcionario.morada }}</p> <!-- Exibir a morada -->
+    </div>
+
+    <div class="row">
+        <!-- Telefone 1/2 e Data de Entrada 1/2 -->
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="font-weight-bold">Telefone</label> <!-- Título em bold -->
+                <p>{{ funcionario.telefone }}</p> <!-- Exibir o telefone -->
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="font-weight-bold">Data de Entrada</label> <!-- Título em bold -->
+                <p>{{ funcionario.data_entrada }}</p> <!-- Exibir a data de entrada -->
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Ativo 1/3, Eticadata 1/3 e Eticadata Armazém 1/3 -->
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="font-weight-bold">Ativo</label> <!-- Título em bold -->
+                <p>{{ funcionario.ativo|yesno:"Sim,Nao" }}</p> <!-- Exibir ativo como Sim ou Não -->
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="font-weight-bold">Eticadata</label> <!-- Título em bold -->
+                <p>{{ funcionario.eticadata }}</p> <!-- Exibir eticadata -->
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="font-weight-bold">Eticadata Armazém</label> <!-- Título em bold -->
+                <p>{{ funcionario.eticadata_armazem }}</p> <!-- Exibir eticadata armazém -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Exibir a foto do funcionário -->
+    <div class="form-group">
+        <label class="font-weight-bold">Foto</label> <!-- Título em bold -->
+        {% if funcionario.foto %}
+            <img src="{{ funcionario.foto.url }}" class="img-fluid rounded" alt="Foto de {{ funcionario.nome }}">
+        {% else %}
+            <p>Nenhuma foto disponível.</p> <!-- Mensagem se não houver foto -->
+        {% endif %}
+    </div>
+
+    <!-- Botão Voltar -->
+    <div class="text-end">
+        <a href="{% url 'funcionario_list' %}" class="btn btn-secondary">Voltar à lista</a>
+    </div>
+</div>
+{% endblock %}
