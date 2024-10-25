@@ -1,3 +1,4 @@
+<!-- mdj_clientes/templates/mdj_clientes/cliente_list.html -->
 {% extends 'base.html' %}
 {% load static %}
 
@@ -8,10 +9,7 @@
     <h1 class="text-center mb-4">Lista de Clientes</h1>
     
     <div class="mb-3 d-flex justify-content-between align-items-center">
-        <!-- Botão Adicionar Cliente -->
         <a href="{% url 'cliente_create' %}" class="btn btn-success me-2">Adicionar Cliente</a>
-        
-        <!-- Formulário de Pesquisa -->
         <form method="get" class="input-group" style="width: auto;">
             <input type="text" name="q" class="form-control" placeholder="Pesquisar..." value="{{ query }}">
             <button class="btn btn-primary" type="submit">Buscar</button>
@@ -40,28 +38,35 @@
                     <a href="{% url 'cliente_delete' cliente.pk %}" class="btn btn-danger btn-sm">Excluir</a>
                 </td>
             </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">Nenhum cliente encontrado.</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
 
     <!-- Paginação -->
-    <div class="pagination">
-        <span class="step-links">
-            {% if clientes.has_previous %}
-                <a href="?page=1&q={{ query }}">&laquo; primeiro</a>
-                <a href="?page={{ clientes.previous_page_number }}&q={{ query }}">anterior</a>
-            {% endif %}
+<div class="pagination">
+    <span class="step-links">
+        {% if clientes.has_previous %}
+            <a href="?page=1&q={{ query|default:'' }}">&laquo; primeiro</a>
+            <a href="?page={{ clientes.previous_page_number }}&q={{ query|default:'' }}">anterior</a>
+        {% endif %}
 
-            <span class="current">
-                Página {{ clientes.number }} de {{ clientes.paginator.num_pages }}.
-            </span>
-
-            {% if clientes.has_next %}
-                <a href="?page={{ clientes.next_page_number }}&q={{ query }}">próximo</a>
-                <a href="?page={{ clientes.paginator.num_pages }}&q={{ query }}">&raquo; último</a>
-            {% endif %}
+        <span class="current">
+            Página {{ clientes.number }} de {{ clientes.paginator.num_pages }}.
         </span>
-    </div>
+
+        {% if clientes.has_next %}
+            <a href="?page={{ clientes.next_page_number }}&q={{ query|default:'' }}">próximo</a>
+            <a href="?page={{ clientes.paginator.num_pages }}&q={{ query|default:'' }}">&raquo; último</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
 </div>
 
 <style>

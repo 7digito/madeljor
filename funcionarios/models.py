@@ -1,4 +1,15 @@
+import os
 from django.db import models
+from django.utils.text import slugify
+from datetime import datetime
+
+def upload_to_cc(instance, filename):
+    # Obtém a extensão do arquivo
+    ext = filename.split('.')[-1]
+    # Cria um nome de arquivo único com o nome do funcionário e data atual
+    filename = f"{slugify(instance.nome)}-{datetime.now().strftime('%Y%m%d%H%M%S')}.{ext}"
+    # Define o caminho da pasta base/funcionarios
+    return os.path.join('base/funcionarios/', filename)
 
 class Funcionario(models.Model):
     CATEGORIAS = [
@@ -20,9 +31,9 @@ class Funcionario(models.Model):
     eticadata = models.IntegerField()
     eticadata_armazem = models.CharField(max_length=10, blank=True, null=True)  # Campo opcional para o armazém
     
-    # Novos campos para as imagens do cartão de cidadão
-    cc_frente = models.ImageField(upload_to='funcionarios/cc_frente/', blank=True, null=True)
-    cc_costas = models.ImageField(upload_to='funcionarios/cc_costas/', blank=True, null=True)
+    # Campos para as imagens do cartão de cidadão com o caminho personalizado
+    cc_frente = models.ImageField(upload_to=upload_to_cc, blank=True, null=True)
+    cc_costas = models.ImageField(upload_to=upload_to_cc, blank=True, null=True)
 
     def __str__(self):
         return self.nome

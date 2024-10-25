@@ -5,23 +5,30 @@ from .models import Cliente
 from .forms import ClienteForm
 
 def cliente_list(request):
-    query = request.GET.get('q')  # Captura a consulta de pesquisa
+    query = request.GET.get('q')
     if query:
-        # Filtra os clientes com base na consulta
         clientes_list = Cliente.objects.filter(
             Q(nome__icontains=query) |
             Q(nif__icontains=query) |
             Q(telefone__icontains=query) |
             Q(email__icontains=query)
-        )
+        ).order_by('nome')
     else:
-        clientes_list = Cliente.objects.all()
+        clientes_list = Cliente.objects.all().order_by('nome')
 
-    paginator = Paginator(clientes_list, 10)  # 10 clientes por página
+    # Debugging
+    print(f'Total de clientes: {clientes_list.count()}')  
+    print(f'Query: {query}')  
+
+    paginator = Paginator(clientes_list, 10)
     page_number = request.GET.get('page')
     clientes = paginator.get_page(page_number)
 
+    print(f'Clientes na página: {clientes.object_list.count()}')  # Adicionando contagem de clientes na página
+    print(f'Página atual: {clientes.number}')  
+
     return render(request, 'mdj_clientes/cliente_list.html', {'clientes': clientes, 'query': query})
+
 
 def cliente_create(request):
     if request.method == 'POST':

@@ -68,15 +68,38 @@
         </div>
     </div>
 
-    <!-- Exibir a foto do funcionário -->
-    <div class="form-group">
-        <label class="font-weight-bold">Foto</label> <!-- Título em bold -->
-        {% if funcionario.foto %}
-            <img src="{{ funcionario.foto.url }}" class="img-fluid rounded" alt="Foto de {{ funcionario.nome }}">
-        {% else %}
-            <p>Nenhuma foto disponível.</p> <!-- Mensagem se não houver foto -->
-        {% endif %}
+    <!-- Exibir o cartão de cidadão (frente e costas) -->
+<!-- Exibir o cartão de cidadão (frente e costas) lado a lado -->
+<div class="form-group">
+    <label class="font-weight-bold">Cartão de Cidadão</label>
+    <div class="row">
+        <!-- Imagem da frente -->
+        <div class="col-md-6">
+            <div class="text-center">
+                {% if funcionario.cc_frente %}
+                    <img src="{{ funcionario.cc_frente.url }}" class="img-fluid rounded" alt="Frente do CC de {{ funcionario.nome }}">
+                    <p class="mt-2">Frente</p>
+                {% else %}
+                    <p>Nenhuma imagem disponível para a frente.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Imagem das costas -->
+        <div class="col-md-6">
+            <div class="text-center">
+                {% if funcionario.cc_costas %}
+                    <img src="{{ funcionario.cc_costas.url }}" class="img-fluid rounded" alt="Costas do CC de {{ funcionario.nome }}">
+                    <p class="mt-2">Costas</p>
+                {% else %}
+                    <p>Nenhuma imagem disponível para as costas.</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
+</div>
+
+
 
     <!-- Botão Voltar -->
     <div class="text-end">
