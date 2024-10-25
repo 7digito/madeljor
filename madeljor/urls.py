@@ -9,6 +9,7 @@ urlpatterns = [
     path('clientes/', include('mdj_clientes.urls')),  # Inclui as URLs da app de clientes
     path('fornecedores/', include('fornecedores.urls')),  # Inclui as URLs da app de fornecedores
     path('funcionarios/', include('funcionarios.urls')),  # Inclui as URLs da app de funcionários
+    path('obras/', include('obras.urls')),  # Incluir as URLs da app obras
 ]
 
 # Serve arquivos de mídia durante o desenvolvimento

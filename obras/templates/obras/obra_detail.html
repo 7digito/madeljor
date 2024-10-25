@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Detalhes da Obra{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center font-weight-bold mb-4">Detalhes da Obra: {{ obra.numero_identificativo }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row">Número Identificativo</th>
+                        <td>{{ obra.numero_identificativo }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nome da Obra</th>
+                        <td>{{ obra.nome }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Local</th>
+                        <td>{{ obra.local }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Cliente</th>
+                        <td>{{ obra.cliente.nome }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tipo de Trabalho</th>
+                        <td>{{ obra.tipo_trabalho.all|join:", " }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Estado</th>
+                        <td>{{ obra.estado }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-end mt-3">
+                <a href="{% url 'obra_update' obra.pk %}" class="btn btn-warning me-2">Editar</a>
+                <a href="{% url 'obra_list' %}" class="btn btn-secondary">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

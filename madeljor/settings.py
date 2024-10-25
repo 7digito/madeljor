@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'homepage',
     'fornecedores',
     'funcionarios',
+    'obras',
 ]
 
 MIDDLEWARE = [

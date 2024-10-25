@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Lista de Obras{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center font-weight-bold">Lista de Obras</h1>
+    <div class="text-end mb-3">
+        <a href="{% url 'obra_create' %}" class="btn btn-success">Adicionar Obra</a>
+    </div>
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Número</th>
+                <th>Cliente</th>
+                <th>Nome da Obra</th>  <!-- Novo campo adicionado -->
+                <th>Local</th>  <!-- Novo campo adicionado -->
+                <th>Estado</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obra in obras %}
+            <tr>
+                <td>{{ obra.numero_identificativo }}</td>
+                <td>{{ obra.cliente.nome }}</td>
+                <td>{{ obra.nome }}</td>  <!-- Exibindo o nome da obra -->
+                <td>{{ obra.local }}</td>  <!-- Exibindo o local da obra -->
+                <td>{{ obra.estado }}</td>
+                <td>
+                    <a href="{% url 'obra_detail' obra.pk %}" class="btn btn-info btn-sm">Detalhes</a>
+                    <a href="{% url 'obra_update' obra.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'obra_delete' obra.pk %}" class="btn btn-danger btn-sm">Apagar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
